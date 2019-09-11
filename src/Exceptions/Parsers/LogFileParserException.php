@@ -1,22 +1,36 @@
 <?php
 
 
-namespace RoistatParser\Exceptions;
-
+namespace RoistatParser\Exceptions\Parsers;
 
 use Exception;
+use RoistatParser\Exceptions\AbstractParserException;
 
-class LogFileParserException extends Exception
+/**
+ * Class LogFileParserException Exception который срабатывает при ошибки парсинга .log файла
+ * @package RoistatParser\Exceptions\Parsers
+ */
+class LogFileParserException extends AbstractParserException
 {
-    private $_raw;
 
-    public function __construct(?string $message, $code = 0, ?string $raw, Exception $previous = null) {
-        $this->_raw = $raw;
-        parent::__construct($message, $code, $previous);
+    /**
+     * LogFileParserException constructor.
+     * @param string $message
+     * @param string $raw
+     * @param int $code
+     * @param Exception|null $previous
+     */
+    public function __construct(?string $message, ?string $raw, $code = 0, Exception $previous = null) {
+        parent::__construct($message, $raw, $code, $previous);
     }
 
-    // Переопределим строковое представление объекта.
-    public function __toString() {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\nRAW - {$this->_raw}";
+    /**
+     * Метод конвертирует ошибку в строку.
+     * @param string|null $raw
+     * @return mixed|string
+     */
+    protected function _toString(?string $raw)
+    {
+        return __CLASS__ . ": [{$this->code}]: {$this->message}\nRAW - {$raw}";
     }
 }

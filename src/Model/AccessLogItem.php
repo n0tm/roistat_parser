@@ -4,7 +4,7 @@
 namespace RoistatParser\Model;
 
 
-class AccessLogRow
+class AccessLogItem
 {
     /**
      * @type string
@@ -43,17 +43,17 @@ class AccessLogRow
      */
     private $_protocol;
     /**
-     * @type string
+     * @type int
      */
-    private $_status;
+    private $_statusCode;
+    /**
+     * @type int
+     */
+    private $_traffic;
     /**
      * @type string
      */
-    private $_bytes;
-    /**
-     * @type string
-     */
-    private $_referer;
+    private $_url;
     /**
      * @type string
      */
@@ -204,51 +204,51 @@ class AccessLogRow
     }
 
     /**
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return $this->_statusCode;
+    }
+
+    /**
+     * @param int $status
+     */
+    public function setStatusCode(?int $status)
+    {
+        $this->_statusCode = $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTraffic()
+    {
+        return $this->_traffic;
+    }
+
+    /**
+     * @param int $bytes
+     */
+    public function setTraffic(?int $bytes)
+    {
+        $this->_traffic = $bytes;
+    }
+
+    /**
      * @return string
      */
-    public function getStatus()
+    public function getUrl()
     {
-        return $this->_status;
-    }
-
-    /**
-     * @param string $status
-     */
-    public function setStatus($status)
-    {
-        $this->_status = $status;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBytes()
-    {
-        return $this->_bytes;
-    }
-
-    /**
-     * @param string $bytes
-     */
-    public function setBytes($bytes)
-    {
-        $this->_bytes = $bytes;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReferer()
-    {
-        return $this->_referer;
+        return $this->_url;
     }
 
     /**
      * @param string $referer
      */
-    public function setReferer($referer)
+    public function setUrl($referer)
     {
-        $this->_referer = $referer;
+        $this->_url = $referer;
     }
 
     /**

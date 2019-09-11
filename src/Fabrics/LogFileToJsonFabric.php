@@ -1,56 +1,64 @@
 <?php
 
 
-namespace RoistatParser;
+namespace RoistatParser\Fabrics;
 
 
-use RoistatParser\OutputConverters\AbstractOutputConverter;
-use RoistatParser\OutputConverters\JSONOutputConverter;
-use RoistatParser\Parsers\AbstractParser;
-use RoistatParser\Parsers\LogFileParser;
-use RoistatParser\Readers\AbstractReader;
-use RoistatParser\Readers\FileReader;
-use RoistatParser\SortingMethods\AbstractSortingMethod;
-use RoistatParser\SortingMethods\BasicSortingMethod;
+use RoistatParser\OutputConverters;
+use RoistatParser\Parsers;
+use RoistatParser\Readers;
+use RoistatParser\SortingMethods;
 
-class LogFileToJsonFabric implements Interfaces\ParserFactoryInterface
+/**
+ * Class LogFileToJsonFabric Фабрика для генерации компонентов для чтения .log файла.
+ * @package RoistatParser
+ */
+class LogFileToJsonFabric extends AbstractParserFabric
 {
 
-    private $_LogFilePath;
+    /**
+     * @type string $_logFilePath Путь до .log файла, который нужно спарсить.
+     */
+    private $_logFilePath;
 
     /**
-     * @param mixed $LogFilePath
+     * @param string $logFilePath
      */
-    public function setLogFilePath($LogFilePath): void
+    public function setLogFilePath(?string $logFilePath): void
     {
-        $this->_LogFilePath = $LogFilePath;
+        $this->_logFilePath = $logFilePath;
     }
 
 
-    public function createReader(): AbstractReader
+    /**
+     * @return Readers\AbstractReader
+     */
+    protected function _createReader(): Readers\AbstractReader
     {
-        return new FileReader($this->_LogFilePath);
+        return new Readers\FileReader($this->_logFilePath);
     }
 
-    public function createParser(): AbstractParser
+    /**
+     * @return Parsers\AbstractParser
+     */
+    protected function _createParser(): Parsers\AbstractParser
     {
-        return new LogFileParser();
+        return new Parsers\LogFileParser();
     }
 
-    public function createSortingMethod(): AbstractSortingMethod
+    /**
+     * @return SortingMethods\AbstractSortingMethod
+     */
+    protected function _createSoringMethod(): SortingMethods\AbstractSortingMethod
     {
-        $basicSortingMethod = new BasicSortingMethod();
-
-        $basicSortingMethod->addTrackingCrawler("Google");
-        $basicSortingMethod->addTrackingCrawler("Bing");
-        $basicSortingMethod->addTrackingCrawler("Baidu");
-        $basicSortingMethod->addTrackingCrawler("Yandex");
-
-        return $basicSortingMethod;
+        return new SortingMethods\BasicSortingMethod();
     }
 
-    public function createOutputConverter(): AbstractOutputConverter
+    /**
+     * @return OutputConverters\AbstractOutputConverter
+     */
+    protected function _createOutputConverter(): OutputConverters\AbstractOutputConverter
     {
-        return new JSONOutputConverter();
+        return new OutputConverters\JSONOutputConverter();
     }
 }

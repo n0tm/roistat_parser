@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use RoistatParser\Readers\FileReader;
 
-class ReaderTests extends TestCase
+class ReaderTest extends TestCase
 {
 
     const ACCESS_LOG_PATH = "../../examples/access_logs/access_log2.log";
