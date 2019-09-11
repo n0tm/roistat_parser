@@ -1,0 +1,19 @@
+{
+    "name": "n0tm/roistat_parser",
+    "description": "Simple access_log parser",
+    "authors": [
+        {
+            "name": "n0tm",
+            "email": "38406016+n0tm@users.noreply.github.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "RoistatParser\\": "src/"
+        }
+    },
+    "require": {
+      "ext-mbstring": "*",
+      "ext-json": "*"
+    }
+}
