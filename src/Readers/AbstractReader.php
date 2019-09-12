@@ -14,7 +14,7 @@ abstract class AbstractReader
      * @type array Преобразованные загруженные данные в массив.
      * @see AbstractReader::_format()
      */
-    private $_data = [];
+    private $_formattedData = [];
 
     /**
      * @var mixed $_loadedData Загруженные данные в любом формате, которые потом будут переданны в метод форматирования
@@ -34,8 +34,8 @@ abstract class AbstractReader
     /**
      * @return array Возвращает отформатированные данные
      */
-    public function getData(): array {
-        return $this->_data;
+    public function getFormattedData(): array {
+        return $this->_formattedData;
     }
 
     /**
@@ -43,7 +43,7 @@ abstract class AbstractReader
      */
     public function read(): void {
         $this->_loadedData = $this->_load();
-        $this->_data = $this->_format($this->_loadedData);
+        $this->_formattedData = $this->_format($this->_loadedData);
     }
 
     /**

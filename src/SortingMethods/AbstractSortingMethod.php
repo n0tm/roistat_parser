@@ -16,15 +16,15 @@ abstract class AbstractSortingMethod
     /**
      * @type array
      */
-    private $_data;
+    private $_sortedData;
 
     /**
      * @return array Возвращает массив отсортированных данных.
      * @see AbstractSortingMethod::sort() Метод сортировки определённым алгоритмом.
      */
-    public function getData(): array
+    public function getSortedData(): array
     {
-        return $this->_data;
+        return $this->_sortedData;
     }
 
     /**
@@ -33,7 +33,7 @@ abstract class AbstractSortingMethod
      */
     public function sort($accessLogItems): void {
         $this->_sort($accessLogItems);
-        $this->_data = $this->_convertSortDataToArray();
+        $this->_sortedData = $this->_convertSortDataToArray();
     }
 
     /**

@@ -45,13 +45,13 @@ class Parser
     public function parse()
     {
         $this->_fabric->getReader()->read();
-        $readerData = $this->_fabric->getReader()->getData();
+        $readerData = $this->_fabric->getReader()->getFormattedData();
 
         $this->_fabric->getParser()->parse($readerData);
         $parserData = $this->_fabric->getParser()->getConvertedItems();
 
         $this->_fabric->getSoringMethod()->sort($parserData);
-        $sortedData = $this->_fabric->getSoringMethod()->getData();
+        $sortedData = $this->_fabric->getSoringMethod()->getSortedData();
 
         $this->_fabric->getOutputConverter()->convert($sortedData);
         return $this->_fabric->getOutputConverter()->getData();

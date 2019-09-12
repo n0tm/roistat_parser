@@ -23,7 +23,7 @@ class ReaderTest extends TestCase
         $reader = new FileReader($pathToFile);
         $reader->read();
 
-        return $reader->getData();
+        return $reader->getFormattedData();
     }
 
 }
